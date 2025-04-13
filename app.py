@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+import streamlit as st
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.llms.openai import OpenAI
@@ -26,8 +26,7 @@ if 'index' not in st.session_state:
 
 def init_openai():
     """Initialize OpenAI settings"""
-    load_dotenv()
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = st.secrets["OPENAI_API_KEY"]
     if not api_key:
         st.error("❌ OpenAI API key not found in .env file!")
         st.stop()
