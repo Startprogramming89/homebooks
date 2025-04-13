@@ -97,7 +97,7 @@ for file in uploaded_files:
 if processed_files:
     documents = SimpleDirectoryReader(input_files=processed_files).load_data()
     Settings.embed_model = OpenAIEmbedding()
-    Settings.llm = OpenAI(model="gpt-4o-mini-2024-07-18")
+    Settings.llm = OpenAI(model="gpt-3.5-turbo")
     st.session_state.index = VectorStoreIndex.from_documents(documents)
     st.session_state.processing_complete = True
     st.success("✅ Documents processed successfully!")
