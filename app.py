@@ -101,6 +101,23 @@ if st.session_state.processing_complete:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
+    # Example prompts section
+    st.markdown("### 📝 Example Questions You Can Ask:")
+    example_prompts = [
+        "🇩🇪 German Examples:",
+        "• Bitte finde und gib den Originalabschnitt oder das Kapitel aus dem Buch \"Babyjahre Entwicklung und Erziehung in den ersten vier Jahren\" zurück, das das Verhalten eines Kindes erklärt, das Dinge auf den Boden wirft. Bitte fasse nichts zusammen, ich möchte den vollständigen Originaltext.",
+
+        "🇬🇧 English Examples:",
+        "• Please find and return the original paragraph or chapter in the book \"xxx\" that explains \"the behavior of a child throwing things\". Please do not summarize - I want the full original wording.",
+        "• What are the conclusions drawn in these documents?",
+        "• Find any references to specific dates or timelines.",
+        "• Explain the methodology described in these documents."
+    ]
+
+    with st.expander("Click to see example questions"):
+        for prompt in example_prompts:
+            st.markdown(prompt)
+
     if prompt := st.chat_input("Ask a question about your documents"):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
