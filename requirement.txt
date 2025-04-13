@@ -1,0 +1,10 @@
+streamlit
+llama-index
+openai
+ebooklib
+beautifulsoup4
+python-dotenv
+requests
+python-pptx
+python-docx
+PyPDF2
