@@ -59,8 +59,10 @@ def process_file(file_path):
         return read_docx(file_path)
     elif ext in ['.pptx', '.ppt']:
         return read_pptx(file_path)
+    elif ext == '.txt':
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return f.read()
     else:
-        st.error(f"Unsupported file format: {ext}")
         return None
 
 # --- Auto-process book on load ---
@@ -69,21 +71,33 @@ os.makedirs(book_folder, exist_ok=True)
 
 uploaded_files = os.listdir(book_folder)
 processed_files = []
+displayed_files = set()
 
 for file in uploaded_files:
     full_path = os.path.join(book_folder, file)
-    st.info(f"📖 Processing: {file}")
+    ext = Path(file).suffix.lower()
+
+    # Skip already-generated .txt files
+    if ext == ".txt":
+        continue
+
+    # Prevent duplicate display
+    if file not in displayed_files:
+        st.info(f"📖 Processing: {file}")
+        displayed_files.add(file)
+
     text = process_file(full_path)
     if text:
         txt_filename = f"{os.path.splitext(full_path)[0]}.txt"
-        with open(txt_filename, "w", encoding="utf-8") as f:
-            f.write(text)
+        if not os.path.exists(txt_filename):
+            with open(txt_filename, "w", encoding="utf-8") as f:
+                f.write(text)
         processed_files.append(txt_filename)
 
 if processed_files:
     documents = SimpleDirectoryReader(input_files=processed_files).load_data()
     Settings.embed_model = OpenAIEmbedding()
-    Settings.llm = OpenAI(model="gpt-3.5-turbo")
+    Settings.llm = OpenAI(model="gpt-4o-mini-2024-07-18")
     st.session_state.index = VectorStoreIndex.from_documents(documents)
     st.session_state.processing_complete = True
     st.success("✅ Documents processed successfully!")
