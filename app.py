@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 from pathlib import Path
-from llama_index import VectorStoreIndex, SimpleDirectoryReader, Settings
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.llms.openai import OpenAI
 from ebooklib import epub
