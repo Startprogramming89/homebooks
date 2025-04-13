@@ -1,9 +1,9 @@
 streamlit
 llama-index==0.10.28
+openai
 requests
 ebooklib
 beautifulsoup4
 PyPDF2
 python-docx
 python-pptx
-openai
