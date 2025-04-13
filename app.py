@@ -1,8 +1,8 @@
 import streamlit as st
 import os
 from pathlib import Path
-from llama_index import VectorStoreIndex, SimpleDirectoryReader
-from llama_index import Settings
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+from llama_index.core import Settings
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.llms.openai import OpenAI
 import requests
