@@ -1,7 +1,5 @@
 streamlit
-llama-index
-llama-index-embeddings-openai
-llama-index-llms-openai
+llama-index==0.10.28
 requests
 ebooklib
 beautifulsoup4
