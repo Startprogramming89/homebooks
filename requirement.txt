@@ -1,10 +1,12 @@
-streamlit
-llama-index
-openai
-ebooklib
-beautifulsoup4
-python-dotenv
-requests
-python-pptx
-python-docx
-PyPDF2
+   streamlit
+   python-dotenv
+   llama-index-core
+   llama-index-embeddings-openai
+   llama-index-llms-openai
+   requests
+   ebooklib
+   beautifulsoup4
+   PyPDF2
+   python-docx
+   python-pptx
+   openai
